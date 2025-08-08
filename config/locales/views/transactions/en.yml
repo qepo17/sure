@@ -10,6 +10,7 @@ en:
       date: Date
       description: Description
       description_placeholder: Describe transaction
+      template_prompt: Select a Template
       expense: Expense
       income: Income
       none: (none)
@@ -40,6 +41,8 @@ en:
       settings: Settings
       tags_label: Tags
       uncategorized: "(uncategorized)"
+      save_template: Save as template
+      save_template_subtitle: Create a reusable template from this transaction
     header:
       edit_categories: Edit categories
       edit_imports: Edit imports

@@ -10,6 +10,7 @@ tr:
       date: Tarih
       description: Açıklama
       description_placeholder: İşlemi açıklayın
+      template_prompt: Şablon seç
       expense: Gider
       income: Gelir
       none: (yok)
@@ -39,6 +40,8 @@ tr:
       settings: Ayarlar
       tags_label: Etiketler
       uncategorized: "(kategorilendirilmemiş)"
+      save_template: Şablon olarak kaydet
+      save_template_subtitle: Bu işlemden yeniden kullanılabilir bir şablon oluşturun
     header:
       edit_categories: Kategorileri düzenle
       edit_imports: İçe aktarımları düzenle

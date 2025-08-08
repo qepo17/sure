@@ -1,0 +1,28 @@
+---
+nb:
+  transaction_templates:
+    index:
+      templates: Maler
+      new: Ny mal
+      empty: Ingen maler ennå
+    new:
+      new: Ny mal
+    edit:
+      edit: Rediger mal
+    form:
+      name: Navn
+      account: Konto
+      amount: Beløp
+      category: Kategori
+      nature: Type
+      notes: Notater
+      submit: Lagre mal
+    create:
+      created: Mal opprettet
+    update:
+      updated: Mal oppdatert
+    destroy:
+      deleted: Mal slettet
+    transaction_template:
+      edit: Rediger
+      delete: Slett

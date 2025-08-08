@@ -29,6 +29,7 @@ class Family < ApplicationRecord
   has_many :tags, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :merchants, dependent: :destroy, class_name: "FamilyMerchant"
+  has_many :transaction_templates, dependent: :destroy
 
   has_many :budgets, dependent: :destroy
   has_many :budget_categories, through: :budgets

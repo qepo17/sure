@@ -96,6 +96,8 @@ Rails.application.routes.draw do
 
   resources :family_merchants, only: %i[index new create edit update destroy]
 
+  resources :transaction_templates
+
   resources :transfers, only: %i[new create destroy show update]
 
   resources :imports, only: %i[index new show create destroy] do

@@ -1,0 +1,14 @@
+<%# locals: (transaction_template:) %>
+<%= styled_form_with model: transaction_template, class: 'space-y-4', data: { turbo_frame: :_top } do |f| %>
+  <section class="space-y-2">
+    <%= f.text_field :name, label: t('.name'), required: true %>
+    <%= f.select :nature, [[t('transactions.form.expense', default: 'Expense'), 'outflow'], [t('transactions.form.income', default: 'Income'), 'inflow']], { label: t('.nature') } %>
+    <%= f.collection_select :account_id, Current.family.accounts.manual.active.alphabetically, :id, :name, { prompt: t('.account'), label: t('.account') } %>
+    <%= f.money_field :amount, label: t('.amount') %>
+    <%= f.collection_select :category_id, Current.family.categories.alphabetically, :id, :name, { prompt: t('.category'), label: t('.category') } %>
+    <%= f.text_area :notes, label: t('.notes'), rows: 5 %>
+  </section>
+  <section>
+    <%= f.submit t('.submit') %>
+  </section>
+<% end %>

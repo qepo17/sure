@@ -77,6 +77,7 @@ nb:
       imports_label: Importer
       logout: Logg ut
       merchants_label: Forhandlere
+      templates_label: Maler
       other_section_title: Mer
       preferences_label: Preferanser
       profile_label: Konto

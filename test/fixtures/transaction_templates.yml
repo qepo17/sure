@@ -1,0 +1,8 @@
+one:
+  family: dylan_family
+  name: Coffee
+  account: depository
+  amount: 3.5
+  currency: USD
+  nature: outflow
+  category: subcategory

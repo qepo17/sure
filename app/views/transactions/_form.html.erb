@@ -1,5 +1,4 @@
 <%# locals: (entry:, income_categories:, expense_categories:) %>
-
 <%= styled_form_with model: entry, url: transactions_path, class: "space-y-4" do |f| %>
   <% if entry.errors.any? %>
     <%= render "shared/form_errors", model: entry %>
@@ -8,23 +7,33 @@
   <section>
     <%= render "shared/transaction_type_tabs", active_tab: params[:nature] == "inflow" ? "income" : "expense", account_id: params[:account_id] %>
 
-    <%= f.hidden_field :nature, value: params[:nature] || "outflow" %>
+    <%= f.hidden_field :nature, value: params[:nature] || "outflow", data: { "transaction-template-selector-target": "nature" } %>
     <%= f.hidden_field :entryable_type, value: "Transaction" %>
   </section>
 
-  <section class="space-y-2">
-    <%= f.text_field :name, label: t(".description"), placeholder: t(".description_placeholder"), required: true %>
+  <section data-controller="transaction-template-selector" class="space-y-2">
+    <div>
+      <input type="search" placeholder="Filter templates" data-transaction-template-selector-target="filter" data-action="input->transaction-template-selector#filter" class="form-field__input mb-1" />
+      <select data-transaction-template-selector-target="select" data-action="change->transaction-template-selector#apply" class="form-field__input">
+        <option value=""><%= t('.template_prompt', default: 'Choose template') %></option>
+        <% @transaction_templates.each do |template| %>
+          <option value="<%= template.id %>"><%= template.name %></option>
+        <% end %>
+      </select>
+    </div>
+
+    <%= f.text_field :name, label: t(".description"), placeholder: t(".description_placeholder"), required: true, data: { "transaction-template-selector-target": "name" } %>
 
     <% if @entry.account_id %>
-      <%= f.hidden_field :account_id %>
+      <%= f.hidden_field :account_id, data: { "transaction-template-selector-target": "account" } %>
     <% else %>
-      <%= f.collection_select :account_id, Current.family.accounts.manual.active.alphabetically, :id, :name, { prompt: t(".account_prompt"), label: t(".account") }, required: true, class: "form-field__input text-ellipsis" %>
+      <%= f.collection_select :account_id, Current.family.accounts.manual.active.alphabetically, :id, :name, { prompt: t(".account_prompt"), label: t(".account") }, required: true, class: "form-field__input text-ellipsis", data: { "transaction-template-selector-target": "account" } %>
     <% end %>
 
-    <%= f.money_field :amount, label: t(".amount"), required: true %>
+    <%= f.money_field :amount, label: t(".amount"), required: true, data: { "transaction-template-selector-target": "amount" } %>
     <%= f.fields_for :entryable do |ef| %>
       <% categories = params[:nature] == "inflow" ? income_categories : expense_categories %>
-      <%= ef.collection_select :category_id, categories, :id, :name, { prompt: t(".category_prompt"), label: t(".category") } %>
+      <%= ef.collection_select :category_id, categories, :id, :name, { prompt: t(".category_prompt"), label: t(".category") }, { "transaction-template-selector-target": "category" } %>
     <% end %>
     <%= f.date_field :date, label: t(".date"), required: true, min: Entry.min_supported_date, max: Date.current, value: Date.current %>
   </section>
