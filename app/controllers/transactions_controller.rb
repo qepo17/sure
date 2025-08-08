@@ -9,6 +9,16 @@ class TransactionsController < ApplicationController
     @expense_categories = Current.family.categories.expenses.alphabetically
   end
 
+  def duplicate
+    original_entry = Current.family.entries.includes(entryable: :tags).find(params[:id])
+    @entry = original_entry.dup
+    @entry.entryable = original_entry.entryable.dup
+    @entry.entryable.tag_ids = original_entry.entryable.tag_ids
+    @income_categories = Current.family.categories.incomes.alphabetically
+    @expense_categories = Current.family.categories.expenses.alphabetically
+    render :new
+  end
+
   def index
     @q = search_params
     @search = Transaction::Search.new(Current.family, filters: @q)

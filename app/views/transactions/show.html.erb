@@ -84,8 +84,7 @@
                       label:    t(".tags_label"),
                       container_class: "h-40"
                     },
-                    { "data-controller": "multi-select", "data-auto-submit-form-target": "auto" } 
-              %>
+                    { "data-controller": "multi-select", "data-auto-submit-form-target": "auto" } %>
             <% end %>
           <% end %>
 
@@ -147,6 +146,20 @@
             icon: "arrow-left-right",
             variant: "outline",
             href: new_transaction_transfer_match_path(@entry),
+            frame: :modal
+          ) %>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 p-3">
+          <div class="text-sm space-y-1">
+            <h4 class="text-primary">Duplicate</h4>
+            <p class="text-secondary">Create a new transaction with the same details.</p>
+          </div>
+
+          <%= render DS::Button.new(
+            text: "Duplicate",
+            variant: "outline",
+            href: duplicate_transaction_path(@entry),
             frame: :modal
           ) %>
         </div>

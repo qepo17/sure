@@ -74,6 +74,14 @@ class TransactionsControllerTest < ActionDispatch::IntegrationTest
     assert_enqueued_with(job: SyncJob)
   end
 
+  test "duplicates existing transaction into new form" do
+    get duplicate_transaction_url(@entry)
+
+    assert_response :success
+    assert_select "input[name='entry[name]'][value=?]", @entry.name
+    assert_select "input[name='entry[account_id]'][value=?]", @entry.account_id.to_s
+  end
+
   test "transaction count represents filtered total" do
     family = families(:empty)
     sign_in users(:empty)
