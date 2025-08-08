@@ -10,6 +10,7 @@ nb:
       date: Dato
       description: Beskrivelse
       description_placeholder: Beskriv transaksjonen
+      template_prompt: Velg en mal
       expense: Utgift
       income: Inntekt
       none: (ingen)
@@ -40,6 +41,8 @@ nb:
       settings: Innstillinger
       tags_label: Tagger
       uncategorized: "(ukategorisert)"
+      save_template: Lagre som mal
+      save_template_subtitle: Opprett en gjenbrukbar mal fra denne transaksjonen
     header:
       edit_categories: Rediger kategorier
       edit_imports: Rediger importer

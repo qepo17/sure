@@ -7,6 +7,7 @@ class TransactionsController < ApplicationController
     super
     @income_categories = Current.family.categories.incomes.alphabetically
     @expense_categories = Current.family.categories.expenses.alphabetically
+    @transaction_templates = Current.family.transaction_templates.alphabetically
   end
 
   def index

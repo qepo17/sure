@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_24_115507) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_25_130000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -824,6 +824,23 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_24_115507) do
     t.jsonb "locked_attributes", default: {}
   end
 
+  create_table "transaction_templates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.uuid "family_id", null: false
+    t.uuid "account_id"
+    t.decimal "amount", precision: 19, scale: 4
+    t.string "currency", default: "USD", null: false
+    t.string "nature", default: "outflow", null: false
+    t.uuid "category_id"
+    t.text "notes"
+    t.jsonb "tag_ids", default: []
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transaction_templates_on_account_id"
+    t.index ["category_id"], name: "index_transaction_templates_on_category_id"
+    t.index ["family_id"], name: "index_transaction_templates_on_family_id"
+  end
+
   add_foreign_key "accounts", "families"
   add_foreign_key "accounts", "imports"
   add_foreign_key "accounts", "plaid_accounts"
@@ -868,6 +885,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_24_115507) do
   add_foreign_key "syncs", "syncs", column: "parent_id"
   add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "families"
+  add_foreign_key "transaction_templates", "families", on_delete: :cascade
+  add_foreign_key "transaction_templates", "accounts", on_delete: :cascade
+  add_foreign_key "transaction_templates", "categories", on_delete: :nullify
   add_foreign_key "tool_calls", "messages"
   add_foreign_key "trades", "securities"
   add_foreign_key "transactions", "categories", on_delete: :nullify

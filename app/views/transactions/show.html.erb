@@ -151,6 +151,21 @@
           ) %>
         </div>
 
+        <div class="flex items-center justify-between gap-4 p-3">
+          <div class="text-sm space-y-1">
+            <h4 class="text-primary"><%= t(".save_template") %></h4>
+            <p class="text-secondary"><%= t(".save_template_subtitle") %></p>
+          </div>
+
+          <%= render DS::Button.new(
+            text: t(".save_template"),
+            variant: "outline",
+            href: transaction_templates_path(transaction_id: @entry.transaction_id),
+            method: :post,
+            frame: "_top"
+          ) %>
+        </div>
+
         <!-- Delete Transaction Form -->
         <div class="flex items-center justify-between gap-2 p-3">
           <div class="text-sm space-y-1">

@@ -75,6 +75,7 @@ tr:
       imports_label: İçe Aktarımlar
       logout: Çıkış Yap
       merchants_label: Satıcılar
+      templates_label: Şablonlar
       other_section_title: Diğer
       preferences_label: Tercihler
       profile_label: Hesap

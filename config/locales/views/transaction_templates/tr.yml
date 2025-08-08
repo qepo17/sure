@@ -1,0 +1,28 @@
+---
+tr:
+  transaction_templates:
+    index:
+      templates: Şablonlar
+      new: Yeni şablon
+      empty: Henüz şablon yok
+    new:
+      new: Yeni şablon
+    edit:
+      edit: Şablonu düzenle
+    form:
+      name: İsim
+      account: Hesap
+      amount: Tutar
+      category: Kategori
+      nature: Tür
+      notes: Notlar
+      submit: Şablonu kaydet
+    create:
+      created: Şablon oluşturuldu
+    update:
+      updated: Şablon güncellendi
+    destroy:
+      deleted: Şablon silindi
+    transaction_template:
+      edit: Düzenle
+      delete: Sil
